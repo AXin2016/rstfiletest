@@ -1,81 +1,84 @@
 pasta配置文件文档
 ==================
-文档存储为.datacfg 文件
+文件存储为.datacfg，按照json格式写
 
-文档格式如下：
+文件内容格式如下：
 
 issued_data
 -----------
-数据需求的日期，比如可以写成：datatime.datatime.now()
+跑数据需求的日期，比如可以写成：datatime.datatime.now()
 
 client
 -------
-填入提出数据需求的产品经理，比如：yaqi
+填入提出数据需求的产品经理，比如可以写成：yaqi
 
 items
 -----
-数据需求项，现已实现的数据需求包括PV，UV，漏斗和计算比率四项
+数据需求项，现已实现的数据需求组件包括PV，UV，漏斗和计算比率四项
 
-PV:计算PV
-^^^^^^^^^
+1、PV
+^^^^^
 
-action:PV
+  action:PV
 
-haveGroup:如果没有条件，写成False;如果有条件，就写成True，添加PVSetting
+  haveGroup:True or False; if True, 添加PVSetting
 
-PVSetting:"groupBy":添加group的条件
+  PVSetting:dict; {"groupBy":group的条件}
 
-config:添加各配置项
-   "eventKey":必填项
-   "severTime":如果数据需求中有时间要求
-   还可以添加比如：os、device等字段
+  config: dict; 包含各配置项
 
-cachedata:填True or False，作用忘了
+     "eventKey":必填项
 
-UV：计算UV
-^^^^^^^^^
+     "severTime":如果数据需求中有时间要求则填写
 
-action:UV
+     还可以添加比如：os、appVersion等条件
 
-userType:user or device
+  cachedata:True or False，作用忘了
 
-config:
-   同PV
+2、UV
+^^^^^
 
-funnel:漏斗
-^^^^^^^^^^^
-action:funnel
+  action:UV
 
-sequence:漏斗的eventKey序列,列表
+  userType:user or device
 
-haveStepConfig:True or False; if True, then fill funnelSettings
+  config:
+    同PV
 
-haveParent:True or False
+3、funnel: 漏斗
+^^^^^^^^^^^^^
+  action:funnel
 
-haveRatio:True or False
+  sequence:漏斗的eventKey序列,列表
 
-funnelSettings:
+  haveStepConfig:True or False; if True, 添加funnelSettings
 
-   stepConfig:dict; fill in every step's request
+  haveParent:True or False; if True, funnelSettings中添加parents
 
-   parents:dict; parent and sub
+  haveRatio:True or False
 
-filter:exceptional request,for example:payable courses;list,includes dicts
+  funnelSettings:
+
+    stepConfig:dict; sequence中需要设置的各步
+
+    parents:dict; 用于有分支的漏斗
+
+  filter: list,由dicts组成; 对特殊要求进行筛选, 比如付费课程等
    
-   for each in filter
+     每一个筛选条件中包含: 
 
-   type:course or user
+     type:course or user
 
-   apply:to the stepConfig
+     apply:将筛选跳进添加到stepConfig
 
-ratio:caculate ratio
-^^^^^^^^^^^^^^^^^^^^
-numerator:need to caculate;dict
+4、ratio:计算比率
+^^^^^^^^^^^^^^^^
+  numerator: dict; 分子
    action:PV or UV
-   config: like PV above
+   config: 同上边的PV
 
-denominator:
-   like numerator
+  denominator: 分母
+   同numerator
 
 
 
