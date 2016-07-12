@@ -74,10 +74,13 @@ items
 4、ratio:计算比率
 ^^^^^^^^^^^^^^^^
   numerator: dict; 分子
+
    action:PV or UV
+
    config: 同上边的PV
 
   denominator: 分母
+
    同numerator
 
 
