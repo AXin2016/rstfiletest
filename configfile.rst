@@ -19,67 +19,68 @@ items
 1、PV
 ^^^^^
 
-  action:PV
+  ＊＊action＊＊:PV
 
-  haveGroup:True or False; if True, 添加PVSetting
+  ＊＊haveGroup＊＊:True or False; if True, 添加PVSetting
 
-  PVSetting:dict; {"groupBy":group的条件}
+  ＊＊PVSetting＊＊:dict; {"groupBy":group的条件}
 
-  config: dict; 包含各配置项
+  ＊＊config＊＊: dict; 包含各配置项
 
-     "eventKey":必填项
+     ＊"eventKey"＊:必填项
 
-     "severTime":如果数据需求中有时间要求则填写
+     ＊"severTime"＊:如果数据需求中有时间要求则填写
 
      还可以添加比如：os、appVersion等条件
 
-  cachedata:True or False，作用忘了
+  ＊＊cachedata＊＊:True or False
 
 2、UV
 ^^^^^
 
-  action:UV
+  ＊＊action＊＊:UV
 
-  userType:user or device
+  ＊＊userType＊＊:user or device
 
-  config:
+  ＊＊config＊＊:
+
     同PV
 
 3、funnel: 漏斗
 ^^^^^^^^^^^^^
-  action:funnel
+  ＊＊action＊＊:funnel
 
-  sequence:漏斗的eventKey序列,列表
+  ＊＊sequence＊＊:漏斗的eventKey序列,列表
 
-  haveStepConfig:True or False; if True, 添加funnelSettings
+  ＊＊haveStepConfig＊＊:True or False; if True, 添加funnelSettings
 
-  haveParent:True or False; if True, funnelSettings中添加parents
+  ＊＊haveParent＊＊:True or False; if True, funnelSettings中添加parents
 
-  haveRatio:True or False
+  ＊＊haveRatio＊＊:True or False
 
-  funnelSettings:
+  ＊＊funnelSettings＊＊:
 
-    stepConfig:dict; sequence中需要设置的各步
+    ＊stepConfig＊:dict; sequence中需要设置的各步
 
-    parents:dict; 用于有分支的漏斗
+    ＊parents＊:dict; 用于有分支的漏斗
 
-  filter: list,由dicts组成; 对特殊要求进行筛选, 比如付费课程等
+  ＊＊filter＊＊: list,由dicts组成; 对特殊要求进行筛选, 比如付费课程等
    
      每一个筛选条件中包含: 
 
-     type:course or user
+     ＊type＊:course or user
 
-     apply:将筛选跳进添加到stepConfig
+     ＊apply＊:将筛选跳进添加到stepConfig
 
 4、ratio:计算比率
 ^^^^^^^^^^^^^^^^
-  numerator: dict; 分子
+  ＊＊numerator＊＊: dict; 分子
 
-   action:PV or UV
+   ＊action＊:PV or UV
 
-   config: 同上边的PV
+   ＊config＊: 同上边的PV
 
-  denominator: 分母
+  ＊＊denominator＊＊: 分母
 
    同numerator
 
